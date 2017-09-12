@@ -1,0 +1,30 @@
+<html>
+	<script src="revc.js"></script>
+	<input type="file" id="fileInput" />
+	<button id="action">Calculate GC Content</button>
+	<script>
+		//var p = prompt("Enter string");
+		button = document.getElementById("action");
+		button.addEventListener("click", function(){
+			var file = document.getElementById("fileInput").files[0];
+			if (file) {
+				var reader = new FileReader();
+				reader.readAsText(file, "UTF-8");
+				reader.onload = function (evt) {
+					console.log(evt.target.result);
+					gcContent(evt.target.result);
+				}
+				reader.onerror = function (evt) {
+					alert(evt);
+				}
+			} else {
+				console.error("No File");
+			}
+		});
+		function gcContent(dnaString){
+		    var rString = dnaString.replace("/\s/igm","");
+			//var delimitedString = rString.split("/(\bRosalind_\d{4})/igm");
+			console.log(rString);
+		}
+	</script>
+</html>
